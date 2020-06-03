@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../components/Layout';
 import { Form, Button, Input, Message } from 'semantic-ui-react';
-import allTopics from '../../ethereum/allTopics';
-import web3 from '../../ethereum/web3';
-import { Router } from '../../routes';
+import allTopics from '../ethereum/allTopics';
+import web3 from '../ethereum/web3';
+import { Router } from '../routes';
 
 class newTopic extends Component { 
 	state = {
