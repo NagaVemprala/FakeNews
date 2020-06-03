@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Layout from '../../components/Layout';
 import { Form, Button, Input, Message } from 'semantic-ui-react';
-import ecommerce from '../../ethereum/ecommerce';
+import allTopics from '../../ethereum/allTopics';
 import web3 from '../../ethereum/web3';
 import { Router } from '../../routes';
 
-class newProduct extends Component { 
+class newTopic extends Component { 
 	state = {
 		minimumRewards: '',
 		productName: '',
@@ -23,7 +23,8 @@ class newProduct extends Component {
 		  console.log("web3.version --> ", web3.version);
 		  console.log("accounts --> ", accounts);
 		  this.setState({account: accounts[0]});
-		  await ecommerce.methods.createProduct(this.state.minimumRewards, this.state.productName).send({
+		  const contractOwner = await allTopics.methods.contractOwner().call();
+		  await allTopics.methods.createTopic(web3.utils.toWei(this.state.minimumRewards, 'ether'), this.state.productName).send({
 		  	  from: accounts[0]
 		  });
 		  this.setState({account: accounts[0]});
@@ -42,7 +43,8 @@ class newProduct extends Component {
         marginright: 'auto',
         width: '500px',
         height: 'auto',
-        backgroundColor: 'powderblue',
+        backgroundColor: '#355C7D',
+        color: 'white'
       };
       let styles2 = {
         margin: 'auto',
@@ -55,7 +57,7 @@ class newProduct extends Component {
 			<Layout>
 			<div className="box" style={styles1}>
 			<hr/>
-			<div> Enter the amount of rewards you would like to distribute as rewards for writing helpful reviews & the description of the product for which you want the reviews to be written </div>
+			<div> Enter the amount of rewards you would like to distribute for identifying fake news & the description of the fake news topic/theme (e.g: US elections related news) </div>
             <hr/>
             </div>
 
@@ -68,8 +70,9 @@ class newProduct extends Component {
 					  value={this.state.minimumRewards}
 					  onChange={event => this.setState({minimumRewards: event.target.value})} 
 					/>
+
 					<p style={{textindent: '5em',}}>  </p>
-					<label> Enter your product details please ! </label>
+					<label> Enter your topic details please ! </label>
 					<Input style={{ marginTop: '10px' }}
 					  label='Product Name' 
 					  labelPosition="right"
@@ -88,4 +91,4 @@ class newProduct extends Component {
 	}
 }
 
-export default newProduct;
+export default newTopic;

@@ -5,7 +5,7 @@ import allTopics from '../../ethereum/allTopics';
 import web3 from '../../ethereum/web3';
 import { Router } from '../../routes';
 
-class newProduct extends Component { 
+class newTopic extends Component { 
 	state = {
 		minimumRewards: '',
 		productName: '',
@@ -91,4 +91,4 @@ class newProduct extends Component {
 	}
 }
 
-export default newProduct;
+export default newTopic;
